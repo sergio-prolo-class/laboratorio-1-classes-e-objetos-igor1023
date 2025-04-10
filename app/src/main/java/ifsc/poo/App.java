@@ -86,23 +86,32 @@ public class App {
 
         Relogio horario = new Relogio();
 
-        horario.ajustaHora((byte) 23, (byte) 59, (byte) 59);
+        // Obrigatorio os casting, do contrário não compila...
+        horario.ajustaHora((byte) 5, (byte) 4, (byte) 9);
 
         System.out.println(horario.getHora());
 
         horario.avancaSegundo();
+        horario.avancaMinuto();
+        horario.avancaHora();
 
         System.out.println(horario.getHora());
+
+        System.out.println(horario.getHoraFormatoV2());
 
     }
 
     public static void main(String[] args) {
 
+        // SUGESTÃO: teste um de cada vez para não confundir a análise
+        // e/ou poluir o prompt
+        // "DESCOMENTE" o que deseja testar...
+
         // testarDuasLampadas();
         // testarDuasPessoas();
         // testarUmRetangulo();
-         testarListaRetangulo();
-        // testarRelogio();
+        // testarListaRetangulo();
+         testarRelogio();
 
     }
 
