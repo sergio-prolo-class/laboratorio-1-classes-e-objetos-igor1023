@@ -101,6 +101,26 @@ public class App {
 
     }
 
+    static void testarProduto(){
+
+        Produto p1 = new Produto();
+        p1.setNome("    Geladeira   ");
+        p1.setDesconto(6);
+        p1.setPreco(832);
+
+        Produto p2 = new Produto();
+        p2.setDesconto(12);
+        p2.setNome("    \n\n\n");
+        p2.setPreco(499);
+
+        System.out.println(p1.getNome() + ": " + p1.getPreco() + " reais");
+        System.out.println(p2.getNome() + ": " + p2.getPreco() + " reais\n");
+
+        //System.out.println(p1.anuncio());
+        //System.out.println(p2.anuncio());
+
+    }
+
     public static void main(String[] args) {
 
         // SUGESTÃO: teste um de cada vez para não confundir a análise
@@ -111,7 +131,8 @@ public class App {
         // testarDuasPessoas();
         // testarUmRetangulo();
         // testarListaRetangulo();
-         testarRelogio();
+        // testarRelogio();
+        testarProduto();
 
     }
 
