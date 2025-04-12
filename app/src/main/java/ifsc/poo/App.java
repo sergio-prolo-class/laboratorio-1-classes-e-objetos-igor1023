@@ -3,11 +3,12 @@
  * Desenvolvido por Igor da Silva
 */
 package ifsc.poo;
-
 import java.util.Random;
 
 public class App {
     
+    final static int MAX_RETANGULO = 10;
+
     static void testarDuasLampadas(){
 
         // LAMPADA A
@@ -61,11 +62,11 @@ public class App {
 
         Random numero = new Random();
 
-        Retangulo[] lista_retangulos = new Retangulo[10];
+        Retangulo[] lista_retangulos = new Retangulo[MAX_RETANGULO];
         float maiorRazao = 0f;
         int index = 0;
 
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < MAX_RETANGULO; i++){
 
             lista_retangulos[i] = new Retangulo();
             lista_retangulos[i].setAltura((float) numero.nextInt(100));
@@ -116,23 +117,40 @@ public class App {
         System.out.println(p1.getNome() + ": " + p1.getPreco() + " reais");
         System.out.println(p2.getNome() + ": " + p2.getPreco() + " reais\n");
 
-        //System.out.println(p1.anuncio());
-        //System.out.println(p2.anuncio());
+        System.out.println(p1.anuncio());
+        System.out.println(p2.anuncio());
 
+    }
+
+    static void testarLivro(){
+
+        Livro livro = new Livro();
+
+        livro.setAutor("Igor da Silva");
+        livro.setTitulo("Engenharia de Telecomunicações");
+        livro.setGeneroLiterario("AVENturA","TerROR");
+
+        System.out.println(livro.getAutor());
+        System.out.println(livro.getTitulo());
+        System.out.println(livro.getGeneroLiterario());
     }
 
     public static void main(String[] args) {
 
-        // SUGESTÃO: teste um de cada vez para não confundir a análise
-        // e/ou poluir o prompt
-        // "DESCOMENTE" o que deseja testar...
+        /* ===== LEIA ABAIXO =====
+        * SUGESTÃO: teste um de cada vez para não confundir a análise
+        * e/ou poluir o prompt
+        * "DESCOMENTE" o que deseja testar...
+        */
 
+        // ===== DESCOMENTE 'UM' MÉTODO ABAIXO PARA TESTAR O QUE DESEJA ===== 
         // testarDuasLampadas();
         // testarDuasPessoas();
         // testarUmRetangulo();
         // testarListaRetangulo();
         // testarRelogio();
-        testarProduto();
+        // testarProduto();
+        // testarLivro();
 
     }
 
