@@ -2,12 +2,12 @@ package ifsc.poo;
 
 public class Livro {
 
-    final int MAX = 30;
+    final int MAX_CAPITULO = 30;
 
     String titulo, autor;
     String generoliterario = "";
-    int[] inicioCadaCapitulo = new int[MAX];
-    String[] nomeCadaCapitulo = new String[MAX];
+    int[] inicioCadaCapitulo = new int[MAX_CAPITULO];
+    String[] nomeCadaCapitulo = new String[MAX_CAPITULO];
     int totalPagina, totalCapitulo;
 
     // ======== MÉTODOS DO TÍTULO ========
@@ -26,8 +26,7 @@ public class Livro {
 
     }
 
-
-    // ======== MÉTODOS DO AUTOR  ========
+    // ======== MÉTODOS DO AUTOR ========
     void setAutor(String nome){
         
         if(nome == null || nome.trim().isEmpty())
@@ -43,7 +42,7 @@ public class Livro {
     }
 
 
-    // ======== MÉTODOS DOS CAPÍTULOS  ========
+    // ======== MÉTODOS DOS CAPÍTULOS ========
 
     // Método para verificar se o vetor está ordenado
     boolean arrayOrdenado(int [] v){
@@ -55,7 +54,7 @@ public class Livro {
         return true;
     }
 
-    // Método para verificar se as posições do vetor não está vazias
+    // Método para verificar se as posições do vetor não estão vazias
     boolean vetorPreenchido(String[] v){
 
         for(int i = 0; i < v.length; i++)
@@ -68,13 +67,14 @@ public class Livro {
 
     void setInicioCapitulos(int[] cap){
 
-        // O usuário pode entrar com numeros NUM de 1 a 30
+        // O usuário pode entrar com numeros NUM de 1 a 30 (1 a MAX_CAPITULO)
         // No método, utilizaremos NUM - 1 (range de 0 a 29)
         // Ex.: inicioCadaCapitulo[0] = 5 Significa que o capítulo 1 começa na página 5
 
-        if(cap.length <= MAX && arrayOrdenado(cap))
+        if(cap.length <= MAX_CAPITULO && arrayOrdenado(cap))
             this.inicioCadaCapitulo = cap.clone();
-            
+        else this.inicioCadaCapitulo = null;
+
     }
 
     int[] getInicioCapitulos(){
@@ -85,8 +85,9 @@ public class Livro {
 
     void setTituloCadaCapitulo(String[] cap){
 
-        if(cap.length <= MAX && vetorPreenchido(cap))
+        if(cap.length <= MAX_CAPITULO && vetorPreenchido(cap))
             this.nomeCadaCapitulo = cap.clone();
+        else this.nomeCadaCapitulo = null;
 
     }
 
@@ -96,7 +97,7 @@ public class Livro {
 
     }
 
-    // ======== MÉTODOS DOS GÊNEROS LITERÁRIOS  ========
+    // ======== MÉTODOS DOS GÊNEROS LITERÁRIOS ========
     boolean generosCorretos(String gen){
 
         // Vou deixar no formato Inicial Maiuscula e o resto minusculo
@@ -118,6 +119,7 @@ public class Livro {
 
     }
 
+    // Método para formatar o texto do gênero
     String ajustaTexto(String str){
 
         str = str.trim();
@@ -139,13 +141,6 @@ public class Livro {
             if((!gen2.isEmpty() || !gen2.isBlank()) && generosCorretos(gen2))
                 this.generoliterario = ajustaTexto(gen2);
 
-        /* if(gen1 != null && gen2 != null)
-            this.generoliterario = gen1 + " " + gen2;
-        else if(gen1 == null && gen2 != null)
-            this.generoliterario = gen2;
-        else if(gen1 != null && gen2 == null)
-            this.generoliterario = gen1;
-        else this.generoliterario = null; */
     }
 
     String getGeneroLiterario(){
@@ -155,7 +150,7 @@ public class Livro {
     }
 
 
-    // ======== MÉTODOS DO TOTAL DE PÁGINA  ========
+    // ======== MÉTODOS DO TOTAL DE PÁGINA ========
     void setTotalPagina(int num){
 
         this.totalPagina = Math.abs(num);
