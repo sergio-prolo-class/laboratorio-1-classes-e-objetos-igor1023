@@ -1,6 +1,6 @@
 package ifsc.poo;
 
-public class Livro{
+public class Livro {
 
     final int MAX = 30;
 
@@ -79,7 +79,7 @@ public class Livro{
 
     int[] getInicioCapitulos(){
 
-        return inicioCadaCapitulo;
+        return this.inicioCadaCapitulo;
 
     }
 
@@ -118,19 +118,26 @@ public class Livro{
 
     }
 
+    String ajustaTexto(String str){
+
+        str = str.trim();
+        return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+
+    }
+
     void setGeneroLiterario(String gen1, String gen2){
 
         if(gen1 != null)
-            if(generosCorretos(gen1)){
-                this.generoliterario = gen1;
+            if((!gen1.isEmpty() || !gen1.isBlank()) && generosCorretos(gen1)){
+                this.generoliterario = ajustaTexto(gen1);
                 if(gen2 != null)
-                    if(generosCorretos(gen2))
-                        this.generoliterario += ", " + gen2;
+                    if(!gen2.isEmpty() && generosCorretos(gen2))
+                        this.generoliterario += ", " + ajustaTexto(gen2);
             }
 
         else if(gen2 != null)
-            if(generosCorretos(gen2))
-                this.generoliterario = gen2;
+            if((!gen2.isEmpty() || !gen2.isBlank()) && generosCorretos(gen2))
+                this.generoliterario = ajustaTexto(gen2);
 
         /* if(gen1 != null && gen2 != null)
             this.generoliterario = gen1 + " " + gen2;
