@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class App {
     
-    final static int MAX_RETANGULO = 10;
+    final static int MAX_RETANGULO = 10; // constante para testar a lista de retangulos
 
     static void testarDuasLampadas(){
 
@@ -58,7 +58,7 @@ public class App {
 
     }
 
-     static void testarListaRetangulo(){
+    static void testarListaRetangulo(){
 
         Random numero = new Random();
 
@@ -129,10 +129,12 @@ public class App {
         livro.setAutor("Igor da Silva");
         livro.setTitulo("Engenharia de Telecomunicações");
         livro.setGeneroLiterario("AVENturA","TerROR");
+        livro.setTotalPagina(586);     
 
         System.out.println(livro.getAutor());
         System.out.println(livro.getTitulo());
         System.out.println(livro.getGeneroLiterario());
+
     }
 
     public static void main(String[] args) {
@@ -150,7 +152,7 @@ public class App {
         // testarListaRetangulo();
         // testarRelogio();
         // testarProduto();
-        // testarLivro();
+         testarLivro();
 
     }
 
