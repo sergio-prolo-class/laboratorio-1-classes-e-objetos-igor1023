@@ -4,15 +4,15 @@ public class Livro {
 
     final int MAX_CAPITULO = 30;
 
-    String titulo, autor;
-    String generoliterario = "";
-    int[] inicioCadaCapitulo = new int[MAX_CAPITULO];
-    String[] nomeCadaCapitulo = new String[MAX_CAPITULO];
-    int totalPagina, totalCapitulo;
+    private String titulo, autor;
+    private String generoliterario = "";
+    private int[] inicioCadaCapitulo = new int[MAX_CAPITULO];
+    private String[] nomeCadaCapitulo = new String[MAX_CAPITULO];
+    private int totalPagina, totalCapitulo;
 
     // ======== MÉTODOS DO TÍTULO ========
 
-    void setTitulo(String titulo){
+    public void setTitulo(String titulo){
 
         if(titulo == null || titulo.trim().isEmpty())
             this.titulo = null;
@@ -20,14 +20,14 @@ public class Livro {
 
     }
 
-    String getTitulo(){
+    public String getTitulo(){
 
         return this.titulo;
 
     }
 
     // ======== MÉTODOS DO AUTOR ========
-    void setAutor(String nome){
+    public void setAutor(String nome){
         
         if(nome == null || nome.trim().isEmpty())
             this.autor = null;
@@ -35,7 +35,7 @@ public class Livro {
 
     }
 
-    String getAutor(){
+    public String getAutor(){
 
         return this.autor;
 
@@ -45,7 +45,7 @@ public class Livro {
     // ======== MÉTODOS DOS CAPÍTULOS ========
 
     // Método para verificar se o vetor está ordenado
-    boolean arrayOrdenado(int [] v){
+    public boolean arrayOrdenado(int [] v){
 
         for(int i = 0; i < (v.length - 1); i++)
             if(v[i] > v[i+1])
@@ -55,7 +55,7 @@ public class Livro {
     }
 
     // Método para verificar se as posições do vetor não estão vazias
-    boolean vetorPreenchido(String[] v){
+    public boolean vetorPreenchido(String[] v){
 
         for(int i = 0; i < v.length; i++)
             if(v[i].isEmpty())
@@ -65,7 +65,7 @@ public class Livro {
     }
 
 
-    void setInicioCapitulos(int[] cap){
+    public void setInicioCapitulos(int[] cap){
 
         // O usuário pode entrar com numeros NUM de 1 a 30 (1 a MAX_CAPITULO)
         // No método, utilizaremos NUM - 1 (range de 0 a 29)
@@ -77,13 +77,13 @@ public class Livro {
 
     }
 
-    int[] getInicioCapitulos(){
+    public int[] getInicioCapitulos(){
 
         return this.inicioCadaCapitulo;
 
     }
 
-    void setTituloCadaCapitulo(String[] cap){
+    public void setTituloCadaCapitulo(String[] cap){
 
         if(cap.length <= MAX_CAPITULO && vetorPreenchido(cap))
             this.nomeCadaCapitulo = cap.clone();
@@ -91,14 +91,14 @@ public class Livro {
 
     }
 
-    String[] getTituloCadaCapitulo(){
+    public String[] getTituloCadaCapitulo(){
 
         return this.nomeCadaCapitulo;
 
     }
 
     // ======== MÉTODOS DOS GÊNEROS LITERÁRIOS ========
-    boolean generosCorretos(String gen){
+    public boolean generosCorretos(String gen){
 
         // Vou deixar no formato Inicial Maiuscula e o resto minusculo
         String genero = gen.trim();
@@ -120,14 +120,14 @@ public class Livro {
     }
 
     // Método para formatar o texto do gênero
-    String ajustaTexto(String str){
+    public String ajustaTexto(String str){
 
         str = str.trim();
         return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
 
     }
 
-    void setGeneroLiterario(String gen1, String gen2){
+    public void setGeneroLiterario(String gen1, String gen2){
 
         if(gen1 != null)
             if((!gen1.isEmpty() || !gen1.isBlank()) && generosCorretos(gen1)){
@@ -143,7 +143,7 @@ public class Livro {
 
     }
 
-    String getGeneroLiterario(){
+    public String getGeneroLiterario(){
 
         return this.generoliterario;
 
@@ -151,13 +151,13 @@ public class Livro {
 
 
     // ======== MÉTODOS DO TOTAL DE PÁGINA ========
-    void setTotalPagina(int num){
+    public void setTotalPagina(int num){
 
         this.totalPagina = Math.abs(num);
 
     }
 
-    int getTotalPagina(){
+    public int getTotalPagina(){
 
         return this.totalPagina;
 

@@ -1,22 +1,28 @@
 package ifsc.poo;
 
+/*
+ * Os métodos de setar largura e altura
+ * podem receber qualquer valor float, pois será
+ * atribuído o módulo do valor.
+*/
+
 public class Retangulo {
 
-    float largura, altura;
+    private float largura, altura;
 
-    void setLargura(float largura){
+    public void setLargura(float largura){
         this.largura = Math.abs(largura);
     }
 
-    void setAltura(float altura){
+    public void setAltura(float altura){
         this.altura = Math.abs(altura);
     }
 
-    float getArea(){
+    public float getArea(){
         return (float) (this.largura * this.altura);
     }
 
-    float getPerimetro(){
+    public float getPerimetro(){
         return (float) (2.0 * (this.largura + this.altura));
     }
 

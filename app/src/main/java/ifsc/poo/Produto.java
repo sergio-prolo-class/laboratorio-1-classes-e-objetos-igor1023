@@ -7,15 +7,18 @@ package ifsc.poo;
  * Trabalhar com preco e desconto com float ou double.
  * Como sistema monetário tem apenas duas casas para os centavos, poderia utilizar float
  * Se for para trabalhar o preco com int, o que aconteceria com os centavos?
+ * 
+ * Os métodos de setar preco podem receber qualquer valor float, 
+ * pois será atribuído o módulo do valor.
 */
 
 public class Produto {
     
-    String nome;
-    int preco = 0;
-    int desconto = 0; //caso não tenha desconto, o usuário não precisa definir
+    private String nome;
+    private int preco = 0;
+    private int desconto = 0; //caso não tenha desconto, o usuário não precisa definir
 
-    void setNome(String nome){
+    public void setNome(String nome){
         
         if(nome == null || nome.trim().isEmpty())
             this.nome = "ERROR"; //Ou null e o usuário faz as tratativas
@@ -26,37 +29,38 @@ public class Produto {
         
     }
 
-    String getNome(){
+    public String getNome(){
         return this.nome;
     }
 
-    void setPreco(int preco){
+    public void setPreco(int preco){
         this.preco = Math.abs(preco);
         // recebe o modulo do valor caso usuário entre com
         // numero negativo sem a intenção
     }   
 
-    float getPreco(){
+    public float getPreco(){
         
         return this.preco - (this.desconto * this.preco / 100.0f);
 
     }
 
-    void setDesconto(int desconto){
+    public void setDesconto(int desconto){
 
+        // Para um desconto de 12%, este método atribui 12 para this.desconto
         this.desconto = Math.abs(desconto);
 
     }
 
-    int getDesconto(){
+    public int getDesconto(){
 
         return this.desconto;
         
     }
 
-    String anuncio(){
+    public String anuncio(){
 
-        return String.format("%s: de R$ %.2f por APENAS R$ %.2f !", this.nome, (float) this.preco, (float) getPreco());
+        return String.format("%s: de R$ %.2f por APENAS R$ %.2f!", this.nome, (float) this.preco, (float) getPreco());
 
     }
 }

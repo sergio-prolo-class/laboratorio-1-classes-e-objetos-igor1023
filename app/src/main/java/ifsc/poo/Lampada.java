@@ -4,15 +4,15 @@ public class Lampada {
 
     private boolean ligada;
 
-    void ligar (){
+    public void ligar (){
         this.ligada = true;
     }
 
-    void desligar (){
+    public void desligar (){
         this.ligada = false;
     }
 
-    boolean verEstado(){
+    public boolean verEstado(){
         return this.ligada;
     }
 
