@@ -13,7 +13,7 @@ public class Relogio {
     public void ajustaHora(byte hora, byte minuto, byte segundo){
 
         // Se hora for maior que 23, será 0
-        // Se minuto ou segundo for maior que 60, será 0
+        // Se minuto ou segundo for maior ou igual que 60, será 0
 
         if(segundo < 60)
             this.segundo = (byte) Math.abs(segundo);
@@ -31,21 +31,25 @@ public class Relogio {
 
     public String getHora(){
 
-        return String.format("%2d:%2d:%2d", this.hora, this.minuto, this.segundo);
+        return String.format("%02d:%02d:%02d", this.hora, this.minuto, this.segundo);
 
     }
 
     public String getHoraFormatoV2(){
 
-        // Se hora, minuto ou segundo for menor que 9, eu concateno "0" na string
+        // Apliquei operador ternário dentro de outro operador ternário
+        String horario = this.hora < 10 ? "0" + this.hora : ((this.hora - 12) < 10 ? "0" + (this.hora - 12) : this.hora + "");
 
-        String horario = this.hora < 10 ? "0" + this.hora + "am " : this.hora + "pm ";
+        // Analisando hora para inserir pm ou am
+        horario += this.hora >= 12 && (this.minuto > 0 || this.segundo > 0) ? "pm " : "am ";
 
-        horario += this.minuto < 10 ? "0" + this.minuto + "m ": this.minuto + "m ";
-
-        horario += this.segundo < 10 ? "0" + this.segundo + "s ": this.segundo + "s ";
+        // As duas seguintes linhas abaixo analisam, respectivamente, minuto
+        // e segundo para concatenação do 0.
+        horario += this.minuto < 10 ? "0" + this.minuto + "m " : this.minuto + "m ";
+        horario += this.segundo < 10 ? "0" + this.segundo + "s " : this.segundo + "s ";
 
         return horario;
+
     }
 
     public void avancaHora(){
@@ -53,7 +57,7 @@ public class Relogio {
         this.hora++;
 
         if(hora == 24)
-            hora = 0;
+            this.hora = 0;
 
     }
 
@@ -62,7 +66,7 @@ public class Relogio {
         this.minuto++;
 
         if(minuto == 60){
-            minuto = 0;
+            this.minuto = 0;
             avancaHora();
         }
 
