@@ -11,9 +11,17 @@ public class Pessoa {
     private int idade;
 
     public void setNome(String nome){
-        if(! (nome.equals(" ") || nome.equals("\n")))
-            this.nome = nome;
-        else this.nome = null;
+        if(nome == null || nome.isEmpty() || nome.isBlank())
+            this.nome = null;
+        else this.nome = ajustaNome(nome);
+    }
+
+    private String ajustaNome(String str){
+
+        str = str.trim();
+        str = str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+        return str;
+
     }
 
     public String getNome(){
