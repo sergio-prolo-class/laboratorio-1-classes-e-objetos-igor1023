@@ -20,17 +20,30 @@ public class Produto {
 
     public void setNome(String nome){
         
-        if(nome == null || nome.trim().isEmpty())
-            this.nome = "ERROR"; //Ou null e o usuário faz as tratativas
-        else this.nome = nome.trim();
+        if(nome == null || nome.isEmpty() || nome.isBlank())
+            this.nome = "ERROR"; //Ou null e o usuário faz as tratativas no seu código
+        else this.nome = ajustaTexto(nome);
         // String.trim(): remover espaços desnecessários
         // lembrei que o professor de Prog II passou um exercício deste em C
         // e nos comentou que em java isto já vem pronto. 
         
     }
 
+    // Método apenas da classe para ajustar strings casuais
+    private String ajustaTexto(String str){
+
+        str = str.trim(); // Vou remover espaços iniciais e finais
+
+        // Vou deixar a String com a inicial MAIUSCULA e o restante minusculo
+        str = str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+        return str;
+
+    }
+
     public String getNome(){
+
         return this.nome;
+
     }
 
     public void setPreco(int preco){
@@ -60,7 +73,7 @@ public class Produto {
 
     public String anuncio(){
 
-        return String.format("%s: de R$ %.2f por APENAS R$ %.2f!", this.nome, (float) this.preco, (float) getPreco());
+        return String.format("%s: de R$ %.2f por APENAS R$ %.2f!", getNome(), (float) getPreco(), (float) getPreco());
 
     }
 }
