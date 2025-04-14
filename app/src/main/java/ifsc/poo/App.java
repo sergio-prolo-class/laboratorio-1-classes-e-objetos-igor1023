@@ -31,7 +31,7 @@ public class App {
     static void testarDuasPessoas(){
 
         Pessoa pessoa_A = new Pessoa();
-        pessoa_A.setNome("Alice");
+        pessoa_A.setNome("   AlICE    ");
         pessoa_A.setIdade(22);
         
         System.out.println("Nome: " + pessoa_A.getNome() + "; Idade: " + pessoa_A.getIdade());
@@ -39,6 +39,8 @@ public class App {
         Pessoa pessoa_B = new Pessoa();
         pessoa_B.setNome("Bruno");
         pessoa_B.setIdade(-25);
+
+        // Bruno faz aniversário 3 vezes...
         for(int i = 0; i < 3; i++)
             pessoa_B.felizAniversario();
 
@@ -88,13 +90,13 @@ public class App {
         Relogio horario = new Relogio();
 
         // Obrigatorio os casting, do contrário não compila...
-        horario.ajustaHora((byte) 5, (byte) 4, (byte) 9);
+        horario.ajustaHora((byte) 22, (byte) 59, (byte) 59);
 
-        System.out.println(horario.getHora());
+        //System.out.println(horario.getHora());
 
-        horario.avancaSegundo();
-        horario.avancaMinuto();
-        horario.avancaHora();
+        //horario.avancaSegundo();
+        //horario.avancaMinuto();
+        //horario.avancaHora();
 
         System.out.println(horario.getHora());
 
@@ -105,7 +107,7 @@ public class App {
     static void testarProduto(){
 
         Produto p1 = new Produto();
-        p1.setNome("    Geladeira   ");
+        p1.setNome("    gelADeiRa   ");
         p1.setDesconto(6);
         p1.setPreco(832);
 
@@ -128,12 +130,12 @@ public class App {
 
         livro.setAutor("Igor da Silva");
         livro.setTitulo("Engenharia de Telecomunicações");
-        livro.setGeneroLiterario("AVENturA","TerROR");
+        livro.setGeneroLiterario("AVENturA");
         livro.setTotalPagina(586);     
 
+        System.out.println(livro.getGeneroLiterario());
         System.out.println(livro.getAutor());
         System.out.println(livro.getTitulo());
-        System.out.println(livro.getGeneroLiterario());
 
     }
 
@@ -152,7 +154,7 @@ public class App {
         // testarListaRetangulo();
         // testarRelogio();
         // testarProduto();
-         testarLivro();
+        // testarLivro();
 
     }
 
