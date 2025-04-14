@@ -2,7 +2,7 @@ package ifsc.poo;
 
 public class Livro {
 
-    final int MAX_CAPITULO = 30;
+    private final int MAX_CAPITULO = 30;
 
     private String titulo, autor;
     private String generoliterario = "";
@@ -127,19 +127,40 @@ public class Livro {
 
     }
 
+    // Método para setar apenas um gênero literário.
+    public void setGeneroLiterario(String gen){
+
+        if(gen != null && (!gen.isEmpty() && !gen.isBlank()) && generosCorretos(gen))
+                this.generoliterario = ajustaTexto(gen);
+            
+    }
+
+    // Método para setar dois gêneros literários
     public void setGeneroLiterario(String gen1, String gen2){
 
-        if(gen1 != null)
-            if((!gen1.isEmpty() || !gen1.isBlank()) && generosCorretos(gen1)){
+        if(gen1 != null && (!gen1.isEmpty() || !gen1.isBlank()))
+            if(generosCorretos(gen1)){
                 this.generoliterario = ajustaTexto(gen1);
                 if(gen2 != null)
                     if(!gen2.isEmpty() && generosCorretos(gen2))
                         this.generoliterario += ", " + ajustaTexto(gen2);
-            }
+        }
 
-        else if(gen2 != null)
-            if((!gen2.isEmpty() || !gen2.isBlank()) && generosCorretos(gen2))
+        else if(gen2 != null && (!gen2.isEmpty() || !gen2.isBlank()))
+            if(generosCorretos(gen2))
                 this.generoliterario = ajustaTexto(gen2);
+
+        /*
+         * Funcionamento do meu algoritmo:
+         * 1- Eu valido se gen1 é uma string não nula e não vazia;
+         *      a- Eu valido se gen1 é um dos gêneros do enunciado
+         *          > Se for verdadeiro, 
+         *              - Ajusto o texto de gen1 e atribuo para this.generoLiterario
+         *              - Faço mesmo procedimento para gen2 e concateno em this.generoLiterario
+         * 
+         * 2- Se gen1 for inválida, eu faço os mesmos procedimentos realizados no passo 1, porém
+         * somente analiso gen2, pois gen1 já foi invalidada.
+        */      
 
     }
 
