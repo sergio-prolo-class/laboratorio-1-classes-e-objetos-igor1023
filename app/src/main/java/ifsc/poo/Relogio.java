@@ -1,5 +1,7 @@
 package ifsc.poo;
 
+import java.awt.RenderingHints;
+
 /*
  * Os métodos de setar hora, minuto e segundo
  * podem receber qualquer valor float, pois será
@@ -37,11 +39,26 @@ public class Relogio {
 
     public String getHoraFormatoV2(){
 
+        //String horario = this.hora < 10 ? "0" + this.hora : ((this.hora - 12) < 10 ? "0" + Math.abs(this.hora - 12) : this.hora + "");
         // Apliquei operador ternário dentro de outro operador ternário
-        String horario = this.hora < 10 ? "0" + this.hora : ((this.hora - 12) < 10 ? "0" + (this.hora - 12) : this.hora + "");
+        //String horario = this.hora < 10 ? "0" + this.hora : (this.hora > 12 ? Math.abs(this.hora - 12) + "": "0" + this.hora);
 
-        // Analisando hora para inserir pm ou am
-        horario += this.hora >= 12 && (this.minuto > 0 || this.segundo > 0) ? "pm " : "am ";
+        String horario = "";
+        if(this.hora <= 12){
+
+            if(this.hora < 10)
+                horario += "0" + (this.hora) + "am ";
+            else if(this.hora == 12 && this.minuto == 0 && this.segundo == 0)
+                horario += this.hora + "am ";
+            else horario += this.hora + "pm ";
+
+        } else {
+
+            if(this.hora - 12 < 10)
+                horario += "0" + (this.hora - 12) + "pm ";
+            else horario += (this.hora - 12) + "pm ";
+
+        }
 
         // As duas seguintes linhas abaixo analisam, respectivamente, minuto
         // e segundo para concatenação do 0.
