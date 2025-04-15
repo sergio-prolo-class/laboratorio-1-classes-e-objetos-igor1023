@@ -128,14 +128,31 @@ public class App {
 
         Livro livro = new Livro();
 
-        livro.setAutor("Igor da Silva");
-        livro.setTitulo("Engenharia de Telecomunicações");
-        livro.setGeneroLiterario("AVENturA");
-        livro.setTotalPagina(586);     
+        livro.setAutor("J. R. R. Tolkien");
+        livro.setTitulo("O Senhor dos Anéis - A Sociedade do Anel");
+        livro.setGeneroLiterario("Fantasia", "Aventura");
+        livro.setTotalPagina(464);     
 
         System.out.println(livro.getGeneroLiterario());
         System.out.println(livro.getAutor());
         System.out.println(livro.getTitulo());
+
+        // Setando nome dos capitulos...
+        String[] nomeCaps = {"Uma festa Muito Esperada", "A Sombra do Passado", "Três é Demais",
+                             "Um atalho para Cogumelos", "Uma conspiração Desmascarada", "A Floresta Velha"};
+
+        livro.setTituloCadaCapitulo(nomeCaps);                             
+        
+        int[] inicioCaps = {1, 23, 44, 66, 89, 110};
+        livro.setInicioCapitulos(inicioCaps);
+
+        String[] imprimeNomeCaps = livro.getTituloCadaCapitulo();
+        int[] imprimePaginas = livro.getInicioCapitulos();
+
+        System.out.println("Capítulo \t\tNome \t\t\t\tPágina");
+        for(int j = 0; j < inicioCaps.length; j++)
+            System.out.printf("    %d \t\t %-40s %d\n", (j+1), imprimeNomeCaps[j], imprimePaginas[j]);
+        
 
     }
 
@@ -154,7 +171,7 @@ public class App {
         // testarListaRetangulo();
         // testarRelogio();
         // testarProduto();
-        // testarLivro();
+         testarLivro();
 
     }
 
