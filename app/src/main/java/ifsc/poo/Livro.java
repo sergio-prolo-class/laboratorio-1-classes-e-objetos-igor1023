@@ -137,7 +137,7 @@ public class Livro {
     }
 
     // Método para formatar o texto do gênero
-    public String ajustaTexto(String str){
+    private String ajustaTexto(String str){
 
         str = str.trim();
         return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
@@ -188,7 +188,7 @@ public class Livro {
     }
 
 
-    // ======== MÉTODOS DO TOTAL DE PÁGINA ========
+    // ======== MÉTODOS DAS PÁGINA ========
     public void setTotalPagina(int num){
 
         this.totalPagina = Math.abs(num);
@@ -230,5 +230,22 @@ public class Livro {
 
         this.paginasLidas = 0;
 
+    }
+
+    // Imprime o número, nome e página inicial de cada capítulo
+    public void imprimeSumario(){
+
+        if(this.arrayOrdenado(inicioCadaCapitulo) && this.vetorPreenchido(nomeCadaCapitulo))
+            if(inicioCadaCapitulo.length != nomeCadaCapitulo.length)
+                return;
+                
+        System.out.println("|---------------------------SUMÁRIO---------------------------|");
+        System.out.println("|Capítulo \t\tNome \t\t\t\tPágina|");
+
+        for(int j = 0; j < this.inicioCadaCapitulo.length; j++)
+            System.out.printf("|%-3d\t\t%-40s   %3d|\n", (j+1), this.nomeCadaCapitulo[j], this.inicioCadaCapitulo[j]);
+                                    // %-40s para alinhar à esquerda
+
+        System.out.println("|-------------------------------------------------------------|");
     }
 }
