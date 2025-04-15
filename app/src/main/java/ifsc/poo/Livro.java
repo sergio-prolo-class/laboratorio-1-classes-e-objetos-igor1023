@@ -8,8 +8,9 @@ public class Livro {
     private String generoliterario = "";
     private int[] inicioCadaCapitulo = new int[MAX_CAPITULO];
     private String[] nomeCadaCapitulo = new String[MAX_CAPITULO];
-    private int totalPagina, totalCapitulo;
+    private int totalPagina = 0, totalCapitulo = 0;
     private int paginasLidas = 0;
+    private boolean livroAcabou = false;
 
     // ======== MÉTODOS DO TÍTULO ========
 
@@ -114,6 +115,35 @@ public class Livro {
 
     }
 
+    // Retorna a primeira menor página de início de um capítulo
+    // que a página atual
+    private int menorPaginaQueAtual(int[] cap, int p){
+
+        int i;
+        for(i = 0; i < cap.length - 1; i++)
+            if(cap[i] <= p && p <= cap[i + 1])
+                break;
+
+        return i;
+
+    }
+
+    public String getCapituloAtual(){
+
+        // Eu tenho que encontrar a primeira menor página
+        // que a página atual! 
+        // Para isto, criei o método "menorPaginaQueAtual"
+
+        return nomeCadaCapitulo[menorPaginaQueAtual(this.inicioCadaCapitulo, this.paginasLidas)];
+
+    }
+
+    public int getTotalCapitulo(){
+
+        return this.totalCapitulo;
+
+    }
+
     // ======== MÉTODOS DOS GÊNEROS LITERÁRIOS ========
     public boolean generosCorretos(String gen){
 
@@ -208,8 +238,10 @@ public class Livro {
         // Se não ultrpassou o limite de páginas do livro...
         if(this.paginasLidas + Math.abs(qtd) <= this.totalPagina)
             this.paginasLidas += qtd;
-        else this.paginasLidas = this.totalPagina; // Vai para a última página
-
+        else {
+            this.paginasLidas = this.totalPagina; // Vai para a última página
+            this.livroAcabou = true;
+        }
     }
 
     public void voltarPaginas(int qtd){
@@ -217,7 +249,7 @@ public class Livro {
         qtd = Math.abs(qtd);
         if(this.paginasLidas - qtd >= 0)
             this.paginasLidas -= qtd;
-        else this.paginasLidas = 0; // Volta para a primeira página
+        else reiniciarLeitura();
     }
 
     public int getPaginasLidas(){
@@ -229,6 +261,14 @@ public class Livro {
     public void reiniciarLeitura(){
 
         this.paginasLidas = 0;
+        this.livroAcabou = false;
+
+    }
+
+    public void finalizarLeitura(){
+
+        this.paginasLidas = totalPagina;
+        this.livroAcabou = true;
 
     }
 
@@ -238,7 +278,7 @@ public class Livro {
         if(this.arrayOrdenado(inicioCadaCapitulo) && this.vetorPreenchido(nomeCadaCapitulo))
             if(inicioCadaCapitulo.length != nomeCadaCapitulo.length)
                 return;
-                
+
         System.out.println("|---------------------------SUMÁRIO---------------------------|");
         System.out.println("|Capítulo \t\tNome \t\t\t\tPágina|");
 
