@@ -9,6 +9,7 @@ public class Livro {
     private int[] inicioCadaCapitulo = new int[MAX_CAPITULO];
     private String[] nomeCadaCapitulo = new String[MAX_CAPITULO];
     private int totalPagina, totalCapitulo;
+    private int paginasLidas = 0;
 
     // ======== MÉTODOS DO TÍTULO ========
 
@@ -71,9 +72,17 @@ public class Livro {
         // No método, utilizaremos NUM - 1 (range de 0 a 29)
         // Ex.: inicioCadaCapitulo[0] = 5 Significa que o capítulo 1 começa na página 5
 
-        if(cap.length <= MAX_CAPITULO && arrayOrdenado(cap))
+        if(cap.length <= MAX_CAPITULO && arrayOrdenado(cap)){
+            
             this.inicioCadaCapitulo = cap.clone();
-        else this.inicioCadaCapitulo = null;
+            this.totalCapitulo = cap.length;
+
+        } else {
+
+            this.inicioCadaCapitulo = null;
+            this.totalCapitulo = 0;
+
+        }
 
     }
 
@@ -85,9 +94,17 @@ public class Livro {
 
     public void setTituloCadaCapitulo(String[] cap){
 
-        if(cap.length <= MAX_CAPITULO && vetorPreenchido(cap))
+        if(cap.length <= MAX_CAPITULO && vetorPreenchido(cap)){
+
             this.nomeCadaCapitulo = cap.clone();
-        else this.nomeCadaCapitulo = null;
+            this.totalCapitulo = cap.length;
+
+        } else {
+
+            this.nomeCadaCapitulo = null;
+            this.totalCapitulo = 0;
+
+        }
 
     }
 
@@ -181,6 +198,37 @@ public class Livro {
     public int getTotalPagina(){
 
         return this.totalPagina;
+
+    }
+
+    public void lerPaginas(int qtd){
+
+        qtd = Math.abs(qtd);
+
+        // Se não ultrpassou o limite de páginas do livro...
+        if(this.paginasLidas + Math.abs(qtd) <= this.totalPagina)
+            this.paginasLidas += qtd;
+        else this.paginasLidas = this.totalPagina; // Vai para a última página
+
+    }
+
+    public void voltarPaginas(int qtd){
+
+        qtd = Math.abs(qtd);
+        if(this.paginasLidas - qtd >= 0)
+            this.paginasLidas -= qtd;
+        else this.paginasLidas = 0; // Volta para a primeira página
+    }
+
+    public int getPaginasLidas(){
+
+        return this.paginasLidas;
+
+    }
+
+    public void reiniciarLeitura(){
+
+        this.paginasLidas = 0;
 
     }
 }
