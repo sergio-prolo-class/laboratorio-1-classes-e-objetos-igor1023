@@ -139,21 +139,28 @@ public class App {
 
         // Setando nome dos capitulos...
         String[] nomeCaps = {"Uma festa Muito Esperada", "A Sombra do Passado", "Três é Demais",
-                             "Um atalho para Cogumelos", "Uma conspiração Desmascarada", "A Floresta Velha"};
-
-        livro.setTituloCadaCapitulo(nomeCaps);                             
+                             "Um atalho para Cogumelos", "Uma conspiração Desmascarada", "A Floresta Velha",
+                             "Em Casa de Tom Bombadil", "Névoa nas Colinas dos Túmulos", "No Pônei Empinado",
+                             "Passolargo", "Um Faca na Noite", "Voo para o Vau", "Muitos Encontros",
+                             "O Conselho de Elrond", "O anel Vai para o Sul", "Uma Jornada no Escuro",
+                             "A ponte de Khazad-dûm", "Lothlórien", "O Espelho de Galadriel", "Adeus a Lórien", 
+                             "O Grande Rio", "A Partida da Sociedade"};                            
         
-        int[] inicioCaps = {1, 23, 44, 66, 89, 110};
+        int[] inicioCaps = {1, 23, 44, 66, 89, 110, 131, 154, 176, 197, 219, 240, 261, 282, 301,
+                            320, 341, 361, 383, 403, 423, 446};
+    
         livro.setInicioCapitulos(inicioCaps);
-
-        String[] imprimeNomeCaps = livro.getTituloCadaCapitulo();
-        int[] imprimePaginas = livro.getInicioCapitulos();
-
-        System.out.println("Capítulo \t\tNome \t\t\t\tPágina");
-        for(int j = 0; j < inicioCaps.length; j++)
-            System.out.printf("    %d \t\t %-40s %d\n", (j+1), imprimeNomeCaps[j], imprimePaginas[j]);
+        livro.setTituloCadaCapitulo(nomeCaps); 
+        livro.imprimeSumario();
         
+        livro.lerPaginas(90);
+        System.out.println(livro.getCapituloAtual());
 
+        livro.lerPaginas(300);
+        System.out.println(livro.getCapituloAtual());
+        
+        livro.lerPaginas(100);
+        System.out.println(livro.getCapituloAtual());
     }
 
     public static void main(String[] args) {
