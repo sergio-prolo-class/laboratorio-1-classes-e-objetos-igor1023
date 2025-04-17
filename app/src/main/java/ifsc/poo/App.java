@@ -13,18 +13,19 @@ public class App {
 
         // LAMPADA A
         Lampada lampada_A = new Lampada();
-        lampada_A.ligar();
-        lampada_A.verEstado();
-        String ligada_A = lampada_A.verEstado() == true ? "1" : "0";
-        System.out.println(ligada_A);
+        String ligada_A = lampada_A.verEstado() == true ? "Ligada" : "Desligada";
+        System.out.println("Lampada A: " + ligada_A);
+
+        if(lampada_A.ligar())
+            System.out.println("Ligou A");
+        else System.out.println("Desligou A");
 
         // LAMPADA B
-        Lampada lampada_B = new Lampada();
-        lampada_B.desligar();
-        lampada_B.verEstado();
-        String ligada_B = lampada_B.verEstado() == true ? "1" : "0";
+        Lampada lampada_B = new Lampada(true);
+        String ligada_B = lampada_B.verEstado() == true ? "Ligada" : "Desligada";
         System.out.println(ligada_B);
 
+        System.out.println("" + Lampada.getQuantidadeLampadas());
     }
 
 
@@ -34,17 +35,20 @@ public class App {
         pessoa_A.setNome("   AlICE    ");
         pessoa_A.setIdade(22);
         
-        System.out.println("Nome: " + pessoa_A.getNome() + "; Idade: " + pessoa_A.getIdade());
+        System.out.println("PESSOA_A:");
+        System.out.println("Nome: " + pessoa_A.getNome());
+        System.out.println("Idade: " + pessoa_A.getIdade());
+        System.out.println("CPF: " + pessoa_A.getCpf());
 
-        Pessoa pessoa_B = new Pessoa();
-        pessoa_B.setNome("Bruno");
-        pessoa_B.setIdade(-25);
-
-        // Bruno faz aniversário 3 vezes...
+        // ====== PESSOA_B ======
+        Pessoa pessoa_B = new Pessoa("111.222.333-44", "   BRUnO  ", 25);
         for(int i = 0; i < 3; i++)
             pessoa_B.felizAniversario();
 
-        System.out.println("Nome: " + pessoa_B.getNome() + "; Idade: " + pessoa_B.getIdade());
+        System.out.println("\nPESSOA_B:");
+        System.out.println("Nome: " + pessoa_B.getNome());
+        System.out.println("Idade: " + pessoa_B.getIdade());
+        System.out.println("CPF: " + pessoa_B.getCpf());
 
     }
 
@@ -173,12 +177,12 @@ public class App {
 
         // ===== DESCOMENTE 'UM' MÉTODO ABAIXO PARA TESTAR O QUE DESEJA ===== 
         // testarDuasLampadas();
-        // testarDuasPessoas();
+         testarDuasPessoas();
         // testarUmRetangulo();
         // testarListaRetangulo();
         // testarRelogio();
         // testarProduto();
-         testarLivro();
+        // testarLivro();
 
     }
 
