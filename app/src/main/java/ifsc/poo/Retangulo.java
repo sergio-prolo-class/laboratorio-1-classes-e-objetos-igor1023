@@ -1,13 +1,5 @@
 package ifsc.poo;
 
-import com.google.j2objc.annotations.RetainedWith;
-
-/*
- * Os métodos de setar largura e altura
- * podem receber qualquer valor float, pois será
- * atribuído o módulo do valor.
-*/
-
 public class Retangulo {
     
     // Constantes
@@ -17,23 +9,25 @@ public class Retangulo {
     // Atributos
     private float largura, altura;
 
-    static Retangulo maiorArea;
-    static Retangulo menorPerimetro;
+    // Forço ambos serem nulo para receberem o primeiro objeto
+    // retângulo criado
+    private static Retangulo maiorArea = null;
+    private static Retangulo menorPerimetro = null;
 
     public Retangulo(float l, float a){
 
-        this.largura = l <= 0 ? LARGURA_PADRAO : l;
-        this.altura  = l <= 0 ? ALTURA_PADRAO  : a;
-
+        this.setLargura(l);
+        this.setAltura(a);
+        atualizaDados();
 
     }
 
-    public void setLargura(float largura){
-        this.largura = Math.abs(largura);
+    public void setLargura(float l){
+        this.largura = l <= 0 ? LARGURA_PADRAO : l;    
     }
 
-    public void setAltura(float altura){
-        this.altura = Math.abs(altura);
+    public void setAltura(float a){
+        this.altura = a <= 0 ? ALTURA_PADRAO  : a;    
     }
 
     public float getArea(){
@@ -46,15 +40,19 @@ public class Retangulo {
 
     private void atualizaDados(){
 
-
-
+        if(maiorArea == null || maiorArea.getArea() < this.getArea())
+            maiorArea = this;
+        
+        if(menorPerimetro == null || menorPerimetro.getPerimetro() > this.getPerimetro())
+                menorPerimetro = this;
+        
     }
 
     public static Retangulo getMaiorArea(){
         return maiorArea;
     }
 
-    public static Retangulo getmenorPerimetro(){
+    public static Retangulo getMenorPerimetro(){
         return menorPerimetro;
     }
 }
