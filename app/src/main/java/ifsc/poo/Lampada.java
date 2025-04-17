@@ -3,7 +3,7 @@ package ifsc.poo;
 public class Lampada {
 
     private boolean ligada;
-    private int quantidadeLampadas = 0;
+    private static int quantidadeLampadas = 0;
 
     public Lampada(){
         this.ligada = false; // Já é padrão...
@@ -27,8 +27,8 @@ public class Lampada {
         return this.ligada;
     }
 
-    public int quantidadeLampadas(){
-        return this.quantidadeLampadas;
+    public static int getQuantidadeLampadas(){
+        return quantidadeLampadas;
     }
 
 }
