@@ -7,12 +7,12 @@ public class Lampada {
 
     public Lampada(){
         this.ligada = false; // Já é padrão...
-        this.quantidadeLampadas++;
+        quantidadeLampadas++;
     }
 
     public Lampada(boolean estado){
         this.ligada = estado;
-        this.quantidadeLampadas++;
+        quantidadeLampadas++;
     }
 
     public boolean ligar (){
