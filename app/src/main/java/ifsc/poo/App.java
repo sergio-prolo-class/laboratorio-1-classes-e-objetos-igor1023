@@ -54,7 +54,7 @@ public class App {
 
     static void testarUmRetangulo(){
 
-        Retangulo retangulo = new Retangulo();
+        Retangulo retangulo = new Retangulo(10.0f, 20.0f);
 
         retangulo.setAltura(-2f);
         retangulo.setLargura(5f);
@@ -74,7 +74,7 @@ public class App {
 
         for(int i = 0; i < MAX_RETANGULO; i++){
 
-            lista_retangulos[i] = new Retangulo();
+            lista_retangulos[i] = new Retangulo(10.0f,20.0f);
             lista_retangulos[i].setAltura((float) numero.nextInt(100));
             lista_retangulos[i].setLargura((float) numero.nextInt(100));
 
@@ -91,10 +91,10 @@ public class App {
 
     static void testarRelogio(){
 
-        Relogio horario = new Relogio();
+        Relogio horario = new Relogio((byte) 22, (byte) 10, (byte) 5);
 
         // Obrigatorio os casting, do contrário não compila...
-        horario.ajustaHora((byte) 22, (byte) 59, (byte) 59);
+        //horario.ajustaHora((byte) 22, (byte) 59, (byte) 59);
 
         //System.out.println(horario.getHora());
 
@@ -110,21 +110,20 @@ public class App {
 
     static void testarProduto(){
 
-        Produto p1 = new Produto();
-        p1.setNome("    gelADeiRa   ");
+        // Testando produto 1
+        Produto p1 = new Produto("PS2", 150);
         p1.setDesconto(6);
-        p1.setPreco(832);
-
-        Produto p2 = new Produto();
-        p2.setDesconto(12);
-        p2.setNome("    \n\n\n");
-        p2.setPreco(499);
-
         System.out.println(p1.getNome() + ": " + p1.getPreco() + " reais");
-        System.out.println(p2.getNome() + ": " + p2.getPreco() + " reais\n");
-
         System.out.println(p1.anuncio());
+        System.out.println("Código do p1: " + p1.getCodigo());
+
+        // Testando produto 2
+        Produto p2 = new Produto("Dualshock 2", 29);
+        p2.setDesconto(12);
+        System.out.println(p2.getNome() + ": " + p2.getPreco() + " reais\n");
         System.out.println(p2.anuncio());
+        System.out.println("Código do p1: " + p2.getCodigo());
+
 
     }
 
@@ -177,11 +176,11 @@ public class App {
 
         // ===== DESCOMENTE 'UM' MÉTODO ABAIXO PARA TESTAR O QUE DESEJA ===== 
         // testarDuasLampadas();
-         testarDuasPessoas();
+        // testarDuasPessoas();
         // testarUmRetangulo();
         // testarListaRetangulo();
         // testarRelogio();
-        // testarProduto();
+         testarProduto();
         // testarLivro();
 
     }

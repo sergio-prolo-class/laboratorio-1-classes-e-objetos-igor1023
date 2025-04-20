@@ -14,15 +14,50 @@ package ifsc.poo;
 
 public class Produto {
     
-    private String nome;
+    private String nome, codigo;
     private int preco = 0;
     private int desconto = 0; //caso não tenha desconto, o usuário não precisa definir
+    private static int quantidadeProduto = 0;
 
-    public void setNome(String nome){
+    public Produto(String nome, int preco) {
+
+        setNome(nome);
+        setPreco(preco);
+        this.desconto = 0;
+        quantidadeProduto++;
+        codigo = codigoAjustado(quantidadeProduto);
+
+    }
+
+    private String codigoAjustado(int qtd){
+
+        String str;
+
+        // Eu vou verificar se qtd é uma grandeza do tamanho de uma unidade,
+        // dezena, centena etc.
+
+        // É unidade
+        if(qtd < 10)
+            str = "000-00" + qtd;
+        else if(qtd < 100)
+            str = "000-0" + qtd;
+        else if(qtd < 1000)
+            str = "000-" + qtd;
+        else str = String.format("%03d-%03d", (qtd / 1000), (qtd % 1000));
         
-        if(nome == null || nome.isEmpty() || nome.isBlank())
+        return str;
+
+    }
+
+    public boolean setNome(String nome){
+        
+        if(nome == null || nome.isEmpty() || nome.isBlank()){
             this.nome = "ERROR"; //Ou null e o usuário faz as tratativas no seu código
-        else this.nome = ajustaTexto(nome);
+            return false;
+        } 
+        
+        this.nome = ajustaTexto(nome);
+        return true;
         // String.trim(): remover espaços desnecessários
         // lembrei que o professor de Prog II passou um exercício deste em C
         // e nos comentou que em java isto já vem pronto. 
@@ -46,10 +81,22 @@ public class Produto {
 
     }
 
-    public void setPreco(int preco){
-        this.preco = Math.abs(preco);
-        // recebe o modulo do valor caso usuário entre com
-        // numero negativo sem a intenção
+    public String getCodigo(){
+
+        return this.codigo;
+
+    }
+
+    public boolean setPreco(int preco){
+        
+        if(preco < 0) {
+            this.preco = 0;
+            return false;
+        }
+
+        this.preco = preco;
+        return true;
+    
     }   
 
     public float getPreco(){
@@ -58,10 +105,15 @@ public class Produto {
 
     }
 
-    public void setDesconto(int desconto){
+    public boolean setDesconto(int desconto){
 
+        if(desconto < 0){
+            this.desconto = 0;
+            return false;
+        }
         // Para um desconto de 12%, este método atribui 12 para this.desconto
-        this.desconto = Math.abs(desconto);
+        this.desconto = desconto;
+        return true;
 
     }
 
