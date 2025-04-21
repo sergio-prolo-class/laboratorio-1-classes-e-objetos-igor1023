@@ -8,8 +8,6 @@ package ifsc.poo;
  * Como sistema monetário tem apenas duas casas para os centavos, poderia utilizar float
  * Se for para trabalhar o preco com int, o que aconteceria com os centavos?
  * 
- * Os métodos de setar preco podem receber qualquer valor float, 
- * pois será atribuído o módulo do valor.
 */
 
 public class Produto {
@@ -19,9 +17,9 @@ public class Produto {
 
     // Atributos para o registro
     private static Produto[] registros = new Produto[MAX_REGISTROS];
-    private static int i = 0; // inicio da fila
-    private static int f = 0; // fim da fila
-    private static int length = 0; // tamanho
+    private static int inicio = 0; // inicio da fila
+    private static int fim = 0; // fim da fila
+    private static int tamanho = 0; // tamanho
     private static int quantidadeProduto = 0;
 
     // Atributos de um Produto
@@ -44,32 +42,40 @@ public class Produto {
     // Método para adicionar na fila circular
     private static void registrarProduto(Produto prod){
 
-        registros[f] = prod;
-        f = (f + 1) % MAX_REGISTROS;
+        registros[fim] = prod;
+        fim = (fim + 1) % MAX_REGISTROS;
 
-        if(length < MAX_REGISTROS)
-            length++;
-        else i = (i + 1) % MAX_REGISTROS; // Caso da fila cheia
+        if(tamanho < MAX_REGISTROS)
+            tamanho++;
+        else inicio = (inicio + 1) % MAX_REGISTROS; // Caso da fila cheia
+
+    }
+
+    public static String[] getRegistros(){
+
+        if(registros == null || tamanho == 0)
+            return new String[0];
+
+        String[] reg = new String[tamanho + 1]; // +1 devido a linha abaixo
+        reg[0] = "Código;Nome;Preço;Desconto";
+
+        for(int i = 0; i < tamanho; i++){
+
+            int indice = (inicio + i) % MAX_REGISTROS;
+            Produto prod = registros[indice];
+            
+            if(prod != null)
+                reg[i+1] = String.format("%s;%s;%.2f;%d", prod.getCodigo(), prod.getNome(), prod.getPreco(), prod.getDesconto());
+
+        }
+
+        return reg;
 
     }
 
     private String codigoAjustado(int qtd){
-
-        String str;
-
-        // Eu vou verificar se qtd é uma grandeza do tamanho de uma unidade,
-        // dezena, centena etc.
-
-        // É unidade
-        if(qtd < 10)
-            str = "000-00" + qtd;
-        else if(qtd < 100)
-            str = "000-0" + qtd;
-        else if(qtd < 1000)
-            str = "000-" + qtd;
-        else str = String.format("%03d-%03d", (qtd / 1000), (qtd % 1000));
         
-        return str;
+        return String.format("%03d-%03d", (qtd / 1000), (qtd % 1000));
 
     }
 
