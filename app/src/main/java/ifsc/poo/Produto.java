@@ -14,18 +14,42 @@ package ifsc.poo;
 
 public class Produto {
     
+    // Constantes
+    private final static int MAX_REGISTROS = 50;
+
+    // Atributos para o registro
+    private static Produto[] registros = new Produto[MAX_REGISTROS];
+    private static int i = 0; // inicio da fila
+    private static int f = 0; // fim da fila
+    private static int length = 0; // tamanho
+    private static int quantidadeProduto = 0;
+
+    // Atributos de um Produto
     private String nome, codigo;
     private int preco = 0;
     private int desconto = 0; //caso não tenha desconto, o usuário não precisa definir
-    private static int quantidadeProduto = 0;
 
     public Produto(String nome, int preco) {
 
         setNome(nome);
         setPreco(preco);
         this.desconto = 0;
+        registrarProduto(this);
+
         quantidadeProduto++;
         codigo = codigoAjustado(quantidadeProduto);
+
+    }
+
+    // Método para adicionar na fila circular
+    private static void registrarProduto(Produto prod){
+
+        registros[f] = prod;
+        f = (f + 1) % MAX_REGISTROS;
+
+        if(length < MAX_REGISTROS)
+            length++;
+        else i = (i + 1) % MAX_REGISTROS; // Caso da fila cheia
 
     }
 
@@ -123,9 +147,15 @@ public class Produto {
         
     }
 
+    private float descontoAplicado(){
+
+        return this.getPreco() - (this.getPreco() * this.getDesconto() / 100.0f);
+
+    }
+
     public String anuncio(){
 
-        return String.format("%s: de R$ %.2f por APENAS R$ %.2f!", getNome(), (float) getPreco(), (float) getPreco());
+        return String.format("%s: de R$ %.2f por APENAS R$ %.2f!", getNome(), (float) getPreco(), descontoAplicado());
 
     }
 }
