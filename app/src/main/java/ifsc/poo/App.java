@@ -122,9 +122,18 @@ public class App {
         p2.setDesconto(12);
         System.out.println(p2.getNome() + ": " + p2.getPreco() + " reais\n");
         System.out.println(p2.anuncio());
-        System.out.println("Código do p1: " + p2.getCodigo());
+        System.out.println("Código do p2: " + p2.getCodigo());
 
+        // Testando produto 3
+        Produto p3 = new Produto("Need For Speed", 10);
+        System.out.println(p3.getNome() + ": " + p3.getPreco() + " reais\n");
+        System.out.println(p3.anuncio());
+        System.out.println("Código do p3: " + p3.getCodigo());
 
+        System.out.println("\nVamos testar o registro no formato CSV:");
+        String[] registros = Produto.getRegistros();
+        for(String p : registros) // VSCODE sugeriu uso do for each
+            System.out.println(p);
     }
 
     static void testarLivro(){
