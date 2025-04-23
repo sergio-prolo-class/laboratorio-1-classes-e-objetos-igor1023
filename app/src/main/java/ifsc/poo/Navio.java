@@ -5,15 +5,15 @@ import java.util.Random;
 public class Navio {
     
     // Constantes
-    private final int DIMENSAO = 10; // tabuleiro DIMENSAO x DIMENSAO
-    private final String[] navio = {"P", "E", "C", "S", "N"};
+    private final String[] navios = {"P", "E", "C", "S", "N"};
     private final Random aleatorio = new Random(); // VSCODE sugeriu final
 
     // Atributos
     private int tamanho;
     private String simbolo;
-    private int[] posicao = new int[2];
+    private final int[] posicao = new int[2]; //X = posicao[0] e Y = posicao[1]
     private boolean afundou;
+    private String orientacao;
 
     public Navio(){
 
@@ -21,6 +21,8 @@ public class Navio {
         setPosicao();
         if(setSimbolo())
             setTamanho();
+
+        setOrientacao();
 
     }
 
@@ -39,7 +41,7 @@ public class Navio {
 
     private boolean setSimbolo(){
 
-        simbolo = navio[aleatorio.nextInt(5)];
+        simbolo = navios[aleatorio.nextInt(5)];
 
         return simbolo != null;
     }
@@ -57,5 +59,33 @@ public class Navio {
 
         };
 
+    }
+
+    private boolean setOrientacao(){
+
+        this.orientacao = aleatorio.nextInt(1) == 1 ? "Horizontal" : "Vertical";
+
+        return this.orientacao != null;
+
+    }
+
+    public String getOrientacao(){
+        return this.orientacao;
+    }
+
+    public int getTamanho(){
+        return this.tamanho;
+    }
+
+    public String getSimbolo(){
+        return this.simbolo;
+    }
+
+    public int[] getPosicao(){
+        return this.posicao;
+    }
+
+    public boolean getAfundou(){
+        return this.afundou;
     }
 }

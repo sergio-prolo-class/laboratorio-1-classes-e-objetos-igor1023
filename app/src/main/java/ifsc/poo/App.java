@@ -175,6 +175,19 @@ public class App {
         System.out.println(livro.getCapituloAtual());
     }
 
+    public static void testarNavio(){
+
+        Navio navioA = new Navio();
+
+        System.out.println("Simbolo: " + navioA.getSimbolo());
+        System.out.println("Tamanho: " + navioA.getTamanho());
+        System.out.println("Orientacao: " + navioA.getOrientacao());
+        System.out.println("Posicao X: " + navioA.getPosicao()[0]);
+        System.out.println("Posicao Y: " + navioA.getPosicao()[1]);
+        System.out.println("Afundou: " + navioA.getAfundou());
+
+    }
+
     public static void main(String[] args) {
 
         /* ===== LEIA ABAIXO =====
@@ -189,8 +202,9 @@ public class App {
         // testarUmRetangulo();
         // testarListaRetangulo();
         // testarRelogio();
-         testarProduto();
+        // testarProduto();
         // testarLivro();
+        // testarNavio();
 
     }
 
